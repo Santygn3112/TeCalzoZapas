@@ -38,15 +38,6 @@
      ```bash
      mysql -u TU_USUARIO -p tecalzozapas < TeCalzoZapas.sql
      ```  
-   - Copia `config.example.py` a `config.py` y ajusta tus credenciales:
-     ```python
-     class Config:
-         SECRET_KEY     = 'una_clave_segura'
-         MYSQL_HOST     = 'localhost'
-         MYSQL_USER     = 'TU_USUARIO'
-         MYSQL_PASSWORD = 'TU_CONTRASEÑA'
-         MYSQL_DB       = 'tecalzozapas'
-     ```
 
 ---
 
