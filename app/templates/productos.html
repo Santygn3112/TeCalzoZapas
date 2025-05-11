@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ subcategoria[0] }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+
+<h2 class="titulo-subcategoria">{{ subcategoria[0] }}</h2>
+
+<div class="grid-productos">
+  {% for p in productos %}
+  <div class="card-producto">
+    <img src="{{ url_for('static', filename=p[3]) }}" alt="{{ p[1] }}" class="producto-img">
+    <div class="producto-info">
+      <h3 class="producto-nombre">{{ p[1] }}</h3>
+      <div class="producto-footer">
+        <span class="producto-precio">{{ p[4] }} €</span>
+        <a href="{{ url_for('producto', id=p[0]) }}" class="btn-ver-mas">Ver más</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

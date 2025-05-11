@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block title %}Registro{% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/estilo.css') }}"
+/>
+<div class="form-container">
+  <h2>Regístrate</h2>
+
+  {% with mensajes = get_flashed_messages(with_categories=true) %} {% if
+  mensajes %} {% for categoria, msg in mensajes %}
+  <div class="alert alert-{{ categoria }}">{{ msg }}</div>
+  {% endfor %} {% endif %} {% endwith %}
+
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.nombre.label }}<br />
+      {{ form.nombre(size=32) }}<br />
+      {% for e in form.nombre.errors %}<small class="text-danger">{{ e }}</small
+      >{% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.email.label }}<br />
+      {{ form.email(size=32) }}<br />
+      {% for e in form.email.errors %}<small class="text-danger">{{ e }}</small
+      >{% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.contraseña.label }}<br />
+      {{ form.contraseña(size=32) }}<br />
+      {% for e in form.contraseña.errors %}<small class="text-danger"
+        >{{ e }}</small
+      >{% endfor %}
+    </div>
+    <div class="form-group">
+      {{ form.confirmar_contraseña.label }}<br />
+      {{ form.confirmar_contraseña(size=32) }}<br />
+      {% for e in form.confirmar_contraseña.errors %}<small class="text-danger"
+        >{{ e }}</small
+      >{% endfor %}
+    </div>
+    {{ form.submit(class="btn-primary") }}
+  </form>
+</div>
+{% endblock %}

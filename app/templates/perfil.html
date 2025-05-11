@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Mi Perfil{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+
+<div class="perfil-container">
+  <h2 class="perfil-titulo">Mi Perfil</h2>
+
+  <ul class="perfil-list">
+    <li><strong>Nombre:</strong> {{ user[0] }}</li>
+    <li><strong>Email:</strong> {{ user[1] }}</li>
+    <li><strong>Fecha de registro:</strong> {{ user[2].strftime('%d/%m/%Y %H:%M') }}</li>
+    <li><strong>Rol:</strong> {{ user[3] }}</li>
+  </ul>
+
+  <!-- Formulario de edición de nombre -->
+  <div class="perfil-editar">
+    <h3>Editar Nombre</h3>
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% if mensajes %}
+        {% for cat, msg in mensajes %}
+          <div class="alert alert-{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('perfil') }}">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.nombre.label }}<br>
+        {{ form.nombre(size=32) }}<br>
+        {% for e in form.nombre.errors %}<small class="text-danger">{{ e }}</small>{% endfor %}
+      </div>
+      {{ form.submit(class="btn-primary") }}
+    </form>
+  </div>
+
+  <!-- Botón para eliminar cuenta -->
+  <div class="perfil-eliminar">
+    <h3>Eliminar Cuenta</h3>
+    <form method="POST" action="{{ url_for('eliminar_cuenta') }}">
+      <button type="submit" class="btn-eliminar" onclick="return confirm('¿Seguro que deseas eliminar tu cuenta? Esta acción es irreversible.')">
+        Eliminar mi cuenta
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

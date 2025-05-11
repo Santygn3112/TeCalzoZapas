@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+
+  <section class="sobre-nosotros">
+  <h2>Sobre nosotros</h2>
+  <p>
+    En <strong>TeCalzoZapas</strong> somos una tienda online especializada en zapatillas y artículos de moda urbana de edición limitada. Nos apasiona la cultura sneaker, el diseño exclusivo y ofrecer productos que marcan la diferencia.
+
+    Creemos que unas buenas zapatillas no solo complementan tu estilo, sino que cuentan una historia. Por eso, seleccionamos cuidadosamente cada modelo que forma parte de nuestro catálogo.
+
+    A continuación, te dejamos un breve vídeo que resume la historia y evolución de las sneakers, y cómo han influido en la cultura urbana a lo largo de los años:
+  </p>
+
+  <div class="video-container mt-4">
+    <iframe width="942" height="530" src="https://www.youtube.com/embed/0NVdkyBjc7o" title="Historia de las sneakers" frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+</div>
+{% endblock %}

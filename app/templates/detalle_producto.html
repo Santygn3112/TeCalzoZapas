@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block title %}{{ producto[1] }}{% endblock %} {%
+block content %}
+<!-- Carga del CSS específico -->
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/detalle_producto.css') }}"
+/>
+
+<div class="detalle-container">
+  <!-- Imagen del producto -->
+  <div class="detalle-img-container">
+    <img
+      src="{{ url_for('static', filename=producto[3]) }}"
+      alt="{{ producto[1] }}"
+      class="detalle-img"
+    />
+  </div>
+
+  <!-- Información del producto -->
+  <div class="detalle-info">
+    <h2 class="detalle-titulo">{{ producto[1] }}</h2>
+    <p class="detalle-descripcion">{{ producto[2] }}</p>
+    <p class="precio">{{ producto[4] }} €</p>
+
+    <form method="POST" action="{{ url_for('carrito_add') }}">
+      <!-- Identificador del producto -->
+      <input type="hidden" name="id_producto" value="{{ producto[0] }}" />
+
+      {% if tallas %}
+      <select name="talla" class="select-talla" required>
+        <option value="" disabled selected>Escoge tu talla</option>
+        {% for t in tallas %}
+        <option value="{{ t[0] }}">{{ t[0] }}</option>
+        {% endfor %}
+      </select>
+      {% endif %}
+
+      <!-- Cantidad fija a 1 (puedes modificar si quieres ofrecer selector) -->
+      <input type="hidden" name="cantidad" value="1" />
+
+      <button type="submit" class="btn-add">Añadir al carrito</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

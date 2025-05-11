@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+
+<div class="contacto-container">
+  <h2>Contacto</h2>
+
+  {# Mensajes flash #}
+  {% with mensajes = get_flashed_messages(with_categories=true) %}
+    {% if mensajes %}
+      {% for cat, msg in mensajes %}
+        <div class="alert alert-{{ cat }}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      {{ form.nombre.label }}
+      {{ form.nombre(class="input-field") }}
+      {% for e in form.nombre.errors %}<small class="text-danger">{{ e }}</small>{% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.email.label }}
+      {{ form.email(class="input-field") }}
+      {% for e in form.email.errors %}<small class="text-danger">{{ e }}</small>{% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.mensaje.label }}
+      {{ form.mensaje(class="textarea-field") }}
+      {% for e in form.mensaje.errors %}<small class="text-danger">{{ e }}</small>{% endfor %}
+    </div>
+
+    {{ form.submit(class="btn-primary") }}
+  </form>
+</div>
+{% endblock %}

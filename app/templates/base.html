@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}TeCalzoZapas{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap SOLO para el navbar -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <!-- Tu CSS personalizado -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/estilo.css') }}"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='img/logo.png') }}"
+    />
+  </head>
+
+  <body>
+    <!-- NAVBAR FIJO (con Bootstrap) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <i class="bi bi-house-door-fill"></i> TeCalzoZapas
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- Nike -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="{{ url_for('static', filename='img/nike-32.ico') }}"
+                  alt="Nike"
+                  width="24"
+                  class="me-1"
+                />
+                Nike
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=1) }}"
+                    >Air Max</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=2) }}"
+                    >Air Force</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=3) }}"
+                    >Dunk</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- Jordan -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="{{ url_for('static', filename='img/jordan.png') }}"
+                  alt="Jordan"
+                  width="24"
+                  class="me-1"
+                />
+                Jordan
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=4) }}"
+                    >Jordan I</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=5) }}"
+                    >Jordan III</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=6) }}"
+                    >Jordan IV</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- Adidas -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  src="{{ url_for('static', filename='img/adidas.ico') }}"
+                  alt="Adidas"
+                  width="24"
+                  class="me-1"
+                />
+                Adidas
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=7) }}"
+                    >NMD</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=8) }}"
+                    >Ozweego</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=9) }}"
+                    >Forum</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- Exclusivo -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+                >Exclusivo</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=10) }}"
+                    >Travis</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=11) }}"
+                    >Yeezy</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=12) }}"
+                    >Rarezas</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!-- Complementos -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+                >Complementos</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=13) }}"
+                    >Cinturones</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=14) }}"
+                    >Bandoleras</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('ver_subcategoria', id=15) }}"
+                    >Bolsos</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <!-- Acciones -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('contacto') }}"
+                ><i class="bi bi-chat-left-text"></i> Contacto</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('carrito')}}"
+                ><i class="bi bi-cart3"></i> Cesta</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-box-arrow-in-right"></i> Cuenta
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                {% if current_user.is_authenticated %} {% if current_user.role
+                == 'admin' %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('admin_productos') }}">
+                    <i class="bi bi-tools"></i> Admin
+                  </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="dropdown-item" href="{{ url_for('perfil') }}">
+                    <i class="bi bi-person-circle"></i> Perfil
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="dropdown-item" href="{{ url_for('logout') }}">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                  </a>
+                </li>
+                {% else %}
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('login') }}"
+                    >Iniciar sesión</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ url_for('registro') }}"
+                    >Registrarse</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Espacio superior para compensar el navbar fijo -->
+    <div style="height: 70px"></div>
+
+    <!-- CONTENIDO PERSONALIZADO (sin Bootstrap) -->
+    <main class="main-container">{% block content %}{% endblock %}</main>
+
+    <br /><br />
+    <!-- FOOTER (sin Bootstrap) -->
+    <footer class="footer">&copy; 2025 TeCalzoZapas</footer>
+
+    <!-- Bootstrap JS para navbar -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

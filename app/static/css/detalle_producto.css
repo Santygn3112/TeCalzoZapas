@@ -1,0 +1,72 @@
+/* Contenedor principal */
+.detalle-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Imagen */
+.detalle-img-container {
+  flex: 1 1 300px;
+  margin-right: 1.5rem;
+}
+.detalle-img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #000;
+  border-radius: 4px;
+}
+
+/* Información */
+.detalle-info {
+  flex: 1 1 300px;
+  color: #000;
+  font-family: monospace;
+}
+.detalle-titulo {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.detalle-descripcion {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+.precio {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+/* Formulario de talla y botón */
+.select-talla {
+  display: block;
+  width: 60%;
+  padding: 0.5rem;
+  margin: 0 auto 1rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.btn-add {
+  display: block;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn-add:hover {
+  background-color: #444;
+}
