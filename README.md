@@ -34,10 +34,6 @@
 
 4. **Prepara la base de datos**  
    - Crea una base de datos llamada `tecalzozapas` en MySQL.  
-   - Importa el esquema y datos iniciales:
-     ```bash
-     mysql -u TU_USUARIO -p tecalzozapas < TeCalzoZapas.sql
-     ```  
 
 ---
 
