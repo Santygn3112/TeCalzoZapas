@@ -22,10 +22,7 @@ def get_or_create_carrito(user_id):
 
 @app.route('/')
 def index():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM productos WHERE activo = 1 LIMIT 12")
-    productos = cur.fetchall()
-    return render_template('index.html', productos=productos)
+    return render_template('index.html')
 
 @app.route('/producto/<int:id>')
 def producto(id):
@@ -57,7 +54,6 @@ def ver_subcategoria(id):
     """, (id,))
     productos = cur.fetchall()
 
-    # Puedes opcionalmente recuperar el nombre de la subcategoría
     cur.execute("SELECT nombre FROM subcategorias WHERE id = %s", (id,))
     subcategoria = cur.fetchone()
 
@@ -299,7 +295,7 @@ def checkout_success():
 def admin_required(f):
     @wraps(f)
     def wrapped(*args, **kwargs):
-        if not current_user.is_authenticated or current_user.role != 'admin':
+        if not current_user.is_authenticated or current_user.rol != 'admin':
             abort(403)
         return f(*args, **kwargs)
     return wrapped
@@ -308,9 +304,22 @@ def admin_required(f):
 @admin_required
 def admin_productos():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT id, nombre, precio, activo FROM productos")
-    productos = cur.fetchall()
-    return render_template('admin/productos.html', productos=productos)
+    cur.execute(
+        "SELECT id, nombre, precio, activo, id_subcategoria "
+        "FROM productos"
+    )
+    productos = cur.fetchall()  
+    
+    cur.execute("SELECT id, nombre FROM subcategorias")
+    subcategorias = cur.fetchall()
+    # Mapeo para mostrar nombre de subcategoría
+    subcategorias_map = {sc_id: sc_nombre for sc_id, sc_nombre in subcategorias}
+
+    return render_template(
+        'admin.html',
+        productos=productos,
+        subcategorias_map=subcategorias_map
+    )
 
 @app.route('/admin/productos/nuevo', methods=['GET','POST'])
 @admin_required
@@ -335,10 +344,9 @@ def admin_producto_nuevo():
             form.subcategoria.data
         ))
         mysql.connection.commit()
-        flash('Producto creado.', 'success')
         return redirect(url_for('admin_productos'))
 
-    return render_template('admin/producto_form.html', form=form, titulo='Nuevo producto')
+    return render_template('producto_form.html', form=form, titulo='Nuevo producto')
 
 @app.route('/admin/productos/<int:id>/editar', methods=['GET','POST'])
 @admin_required
@@ -370,10 +378,9 @@ def admin_producto_editar(id):
             id
         ))
         mysql.connection.commit()
-        flash('Producto actualizado.', 'success')
         return redirect(url_for('admin_productos'))
 
-    return render_template('admin/producto_form.html', form=form, titulo='Editar producto')
+    return render_template('producto_form.html', form=form, titulo='Editar producto')
 
 @app.route('/admin/productos/<int:id>/borrar', methods=['POST'])
 @admin_required
@@ -381,5 +388,4 @@ def admin_producto_borrar(id):
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM productos WHERE id = %s", (id,))
     mysql.connection.commit()
-    flash('Producto eliminado.', 'info')
     return redirect(url_for('admin_productos'))
