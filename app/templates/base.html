@@ -30,7 +30,7 @@
   </head>
 
   <body>
-    <!-- NAVBAR FIJO (con Bootstrap) -->
+    <!-- NAVBAR FIJO -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('index') }}">
@@ -41,6 +41,9 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,7 +55,10 @@
               <a
                 class="nav-link dropdown-toggle d-flex align-items-center"
                 href="#"
+                id="nikeDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 <img
                   src="{{ url_for('static', filename='img/nike-32.ico') }}"
@@ -62,7 +68,7 @@
                 />
                 Nike
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" aria-labelledby="nikeDropdown">
                 <li>
                   <a
                     class="dropdown-item"
@@ -92,7 +98,10 @@
               <a
                 class="nav-link dropdown-toggle d-flex align-items-center"
                 href="#"
+                id="jordanDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 <img
                   src="{{ url_for('static', filename='img/jordan.png') }}"
@@ -102,7 +111,7 @@
                 />
                 Jordan
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" aria-labelledby="jordanDropdown">
                 <li>
                   <a
                     class="dropdown-item"
@@ -132,7 +141,10 @@
               <a
                 class="nav-link dropdown-toggle d-flex align-items-center"
                 href="#"
+                id="adidasDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 <img
                   src="{{ url_for('static', filename='img/adidas.ico') }}"
@@ -142,7 +154,7 @@
                 />
                 Adidas
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" aria-labelledby="adidasDropdown">
                 <li>
                   <a
                     class="dropdown-item"
@@ -172,10 +184,14 @@
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
+                id="exclusivoDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
-                >Exclusivo</a
+                aria-expanded="false"
               >
-              <ul class="dropdown-menu">
+                Exclusivo
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="exclusivoDropdown">
                 <li>
                   <a
                     class="dropdown-item"
@@ -205,10 +221,14 @@
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
+                id="complementosDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
-                >Complementos</a
+                aria-expanded="false"
               >
-              <ul class="dropdown-menu">
+                Complementos
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="complementosDropdown">
                 <li>
                   <a
                     class="dropdown-item"
@@ -235,54 +255,63 @@
           </ul>
 
           <!-- Acciones -->
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('contacto') }}"
-                ><i class="bi bi-chat-left-text"></i> Contacto</a
-              >
+              <a class="nav-link" href="{{ url_for('contacto') }}">
+                <i class="bi bi-chat-left-text"></i> Contacto
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('carrito')}}"
-                ><i class="bi bi-cart3"></i> Cesta</a
-              >
+              <a class="nav-link" href="{{ url_for('carrito') }}">
+                <i class="bi bi-cart3"></i> Cesta
+              </a>
             </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
+                id="cuentaDropdown"
+                role="button"
                 data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 <i class="bi bi-box-arrow-in-right"></i> Cuenta
               </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                {% if current_user.is_authenticated %} {% if current_user.role
-                == 'admin' %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('admin_productos') }}">
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="cuentaDropdown"
+              >
+                {% if current_user.is_authenticated %} {% if current_user.rol ==
+                'admin' %}
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{ url_for('admin_productos') }}"
+                  >
                     <i class="bi bi-tools"></i> Admin
                   </a>
                 </li>
                 {% endif %}
-                <li class="nav-item">
+                <li>
                   <a class="dropdown-item" href="{{ url_for('perfil') }}">
                     <i class="bi bi-person-circle"></i> Perfil
                   </a>
                 </li>
-                <li class="nav-item">
+                <li>
                   <a class="dropdown-item" href="{{ url_for('logout') }}">
                     <i class="bi bi-box-arrow-right"></i> Cerrar sesión
                   </a>
                 </li>
                 {% else %}
                 <li>
-                  <a class="dropdown-item" href="{{ url_for('login') }}"
-                    >Iniciar sesión</a
-                  >
+                  <a class="dropdown-item" href="{{ url_for('login') }}">
+                    Iniciar sesión
+                  </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{{ url_for('registro') }}"
-                    >Registrarse</a
-                  >
+                  <a class="dropdown-item" href="{{ url_for('registro') }}">
+                    Registrarse
+                  </a>
                 </li>
                 {% endif %}
               </ul>
@@ -295,11 +324,11 @@
     <!-- Espacio superior para compensar el navbar fijo -->
     <div style="height: 70px"></div>
 
-    <!-- CONTENIDO PERSONALIZADO (sin Bootstrap) -->
+    <!-- CONTENIDO PERSONALIZADO -->
     <main class="main-container">{% block content %}{% endblock %}</main>
 
     <br /><br />
-    <!-- FOOTER (sin Bootstrap) -->
+    <!-- FOOTER -->
     <footer class="footer">&copy; 2025 TeCalzoZapas</footer>
 
     <!-- Bootstrap JS para navbar -->
