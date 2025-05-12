@@ -258,7 +258,7 @@ body {
 }
 
 .form-recordarme{
-  display: inline;
+  display: inline-inline;
 }
 
 .form-group input {
@@ -545,4 +545,72 @@ body {
 }
 .inline-form {
   display: inline;
+}
+
+/* --- FORMULARIO DE PRODUCTO (producto_form.html) --- */
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.form-container h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.form-container form > div {
+  margin-bottom: 1rem;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="url"],
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-container textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-container .error {
+  color: #c00;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.form-container .btn {
+  display: inline-block;
+  background-color: #222;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.form-container .btn:hover {
+  background-color: #444;
 }
