@@ -29,7 +29,6 @@
         <td>{{ nombre }}</td>
         <td>{{ precio }}€</td>
         <td>
-          {# Podemos mostrar el nombre de la subcategoría cargado en la vista o hacer lookup #}
           {{ subcategorias_map[id_sub] }}
         </td>
         <td>{{ 'Sí' if activo else 'No' }}</td>
